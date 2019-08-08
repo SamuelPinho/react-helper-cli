@@ -1,0 +1,46 @@
+{
+  "name": "react-helper",
+  "version": "0.0.1",
+  "description": "react-helper CLI",
+  "private": true,
+  "bin": {
+    "react-helper": "bin/react-helper"
+  },
+  "scripts": {
+    "format": "prettier --write **/*.{js,json} && standard --fix",
+    "lint": "standard",
+    "test": "jest",
+    "watch": "jest --watch",
+    "snapupdate": "jest --updateSnapshot",
+    "coverage": "jest --coverage"
+  },
+  "files": [
+    "src",
+    "LICENSE",
+    "readme.md",
+    "docs",
+    "bin"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "gluegun": "^3.3.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.2",
+    "jest": "^23.6.0",
+    "prettier": "^1.12.1",
+    "standard": "^12.0.1"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ]
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  }
+}
