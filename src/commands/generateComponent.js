@@ -51,26 +51,26 @@ module.exports = {
       class: [
         // index
         {
-          template: 'reactClassComponentIndex.ejs',
+          template: 'classComponent/reactClassComponentIndex.ejs',
           target: `components/${capitalizedComponentName}/index.js`,
           props: { capitalizedComponentName, lowerCaseComponentName }
         },
         // view
         {
-          template: 'reactClassComponentView.ejs',
+          template: 'classComponent/reactClassComponentView.ejs',
           target: `components/${capitalizedComponentName}/${lowerCaseComponentName}-view.js`,
           props: { capitalizedComponentName }
         },
         // container
         {
-          template: 'reactClassComponentContainer.ejs',
+          template: 'classComponent/reactClassComponentContainer.ejs',
           target: `components/${capitalizedComponentName}/${lowerCaseComponentName}-container.js`,
           props: { capitalizedComponentName }
         }
       ],
       function: [
         {
-          template: 'reactFunctionComponent.ejs',
+          template: 'functionComponent/reactFunctionComponent.ejs',
           target: `components/${capitalizedComponentName}/index.js`,
           props: { capitalizedComponentName }
         }
