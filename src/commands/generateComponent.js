@@ -8,12 +8,13 @@ module.exports = {
 
     let componentName
     let componentType
+    let componentFolder
 
     // asks for a component name
     const result = await prompt.ask({
       type: 'input',
       name: 'componentName',
-      message: 'Give a name to your component: '
+      message: 'Give a NAME to your component: '
     })
 
     // verify if anything was passed
@@ -39,7 +40,7 @@ module.exports = {
     await prompt.ask({
       type: 'select',
       name: 'componentType',
-      message: 'Select the type of your component',
+      message: 'Select the TYPE of your component',
       choices: ['function', 'class']
     })
 
@@ -47,31 +48,42 @@ module.exports = {
       componentType = result.componentType
     }
 
+    await prompt.ask({
+      type: 'select',
+      name: 'componentFolder',
+      message: 'Select the FOLDER where you want to add you component',
+      choices: ['components', 'pages']
+    })
+
+    if (result && result.componentFolder) {
+      componentFolder = result.componentFolder
+    }
+
     const templatesByType = {
       class: [
         // index
         {
           template: 'classComponent/reactClassComponentIndex.ejs',
-          target: `components/${capitalizedComponentName}/index.js`,
+          target: `${componentFolder}/${capitalizedComponentName}/index.js`,
           props: { capitalizedComponentName, lowerCaseComponentName }
         },
         // view
         {
           template: 'classComponent/reactClassComponentView.ejs',
-          target: `components/${capitalizedComponentName}/${lowerCaseComponentName}-view.js`,
+          target: `${componentFolder}/${capitalizedComponentName}/${lowerCaseComponentName}-view.js`,
           props: { capitalizedComponentName }
         },
         // container
         {
           template: 'classComponent/reactClassComponentContainer.ejs',
-          target: `components/${capitalizedComponentName}/${lowerCaseComponentName}-container.js`,
+          target: `${componentFolder}/${capitalizedComponentName}/${lowerCaseComponentName}-container.js`,
           props: { capitalizedComponentName }
         }
       ],
       function: [
         {
           template: 'functionComponent/reactFunctionComponent.ejs',
-          target: `components/${capitalizedComponentName}/index.js`,
+          target: `${componentFolder}/${capitalizedComponentName}/index.js`,
           props: { capitalizedComponentName }
         }
       ]
@@ -83,7 +95,7 @@ module.exports = {
 
     await template.generate({
       template: 'styles.ejs',
-      target: `components/${capitalizedComponentName}/styles.js`
+      target: `${componentFolder}/${capitalizedComponentName}/styles.js`
     })
   }
 }
