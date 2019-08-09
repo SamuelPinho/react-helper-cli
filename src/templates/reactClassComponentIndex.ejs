@@ -1,0 +1,15 @@
+import React from 'react';
+import <%= props.capitalizedComponentName %>Container from './<%= props.lowerCaseComponentName %>-container';
+import <%= props.capitalizedComponentName %>View from './<%= props.lowerCaseComponentName %>-view';
+
+const <%= props.capitalizedComponentName %> = () => {
+  return (
+    <>
+      <<%= props.capitalizedComponentName %>Container>
+        <<%= props.capitalizedComponentName %>View />
+      </<%= props.capitalizedComponentName %>Container>
+    </>
+  );
+}
+
+export default <%= props.capitalizedComponentName %>;

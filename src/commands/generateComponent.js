@@ -34,12 +34,13 @@ module.exports = {
 
     const capitalizedComponentName =
       componentName.charAt(0).toUpperCase() + componentName.slice(1)
+    const lowerCaseComponentName = componentName.toLowerCase()
 
     await prompt.ask({
       type: 'select',
       name: 'componentType',
       message: 'Select the type of your component',
-      choices: ['functional', 'statefull']
+      choices: ['function', 'class']
     })
 
     if (result && result.componentType) {
@@ -47,19 +48,42 @@ module.exports = {
     }
 
     const templatesByType = {
-      functional: ``,
-      statefull: ``
+      class: [
+        // index
+        {
+          template: 'reactClassComponentIndex.ejs',
+          target: `components/${capitalizedComponentName}/index.js`,
+          props: { capitalizedComponentName, lowerCaseComponentName }
+        },
+        // view
+        {
+          template: 'reactClassComponentView.ejs',
+          target: `components/${capitalizedComponentName}/${lowerCaseComponentName}-view.js`,
+          props: { capitalizedComponentName }
+        },
+        // container
+        {
+          template: 'reactClassComponentContainer.ejs',
+          target: `components/${capitalizedComponentName}/${lowerCaseComponentName}-container.js`,
+          props: { capitalizedComponentName }
+        }
+      ],
+      function: [
+        {
+          template: 'reactFunctionComponent.ejs',
+          target: `components/${capitalizedComponentName}/index.js`,
+          props: { capitalizedComponentName }
+        }
+      ]
     }
 
-    // await template.generate({
-    //   template: 'reactComponent.ejs',
-    //   target: `components/${capitalizedComponentName}/index.js`,
-    //   props: { componentName }
-    // })
+    templatesByType[componentType].forEach(async temp => {
+      await template.generate(temp)
+    })
 
-    // await template.generate({
-    //   template: 'styles.ejs',
-    //   target: `components/${capitalizedComponentName}/styles.js`
-    // })
+    await template.generate({
+      template: 'styles.ejs',
+      target: `components/${capitalizedComponentName}/styles.js`
+    })
   }
 }
