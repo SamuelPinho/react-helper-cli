@@ -1,7 +1,11 @@
 import React from 'react';
 
 class <%= props.capitalizedComponentName %>Container extends React.Component {
+  state = {};
+
   render() {
+    const { children } = this.props;
+
     return (
       <>
         {React.cloneElement(children, {})}
