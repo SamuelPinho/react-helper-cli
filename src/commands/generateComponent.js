@@ -64,26 +64,26 @@ module.exports = {
         // index
         {
           template: 'classComponent/reactClassComponentIndex.ejs',
-          target: `${componentFolder}/${capitalizedComponentName}/index.js`,
+          target: `src/${componentFolder}/${capitalizedComponentName}/index.js`,
           props: { capitalizedComponentName, lowerCaseComponentName }
         },
         // view
         {
           template: 'classComponent/reactClassComponentView.ejs',
-          target: `${componentFolder}/${capitalizedComponentName}/${lowerCaseComponentName}-view.js`,
+          target: `src/${componentFolder}/${capitalizedComponentName}/${lowerCaseComponentName}-view.js`,
           props: { capitalizedComponentName }
         },
         // container
         {
           template: 'classComponent/reactClassComponentContainer.ejs',
-          target: `${componentFolder}/${capitalizedComponentName}/${lowerCaseComponentName}-container.js`,
+          target: `src/${componentFolder}/${capitalizedComponentName}/${lowerCaseComponentName}-container.js`,
           props: { capitalizedComponentName }
         }
       ],
       function: [
         {
           template: 'functionComponent/reactFunctionComponent.ejs',
-          target: `${componentFolder}/${capitalizedComponentName}/index.js`,
+          target: `src/${componentFolder}/${capitalizedComponentName}/index.js`,
           props: { capitalizedComponentName }
         }
       ]
@@ -95,7 +95,7 @@ module.exports = {
 
     await template.generate({
       template: 'styles.ejs',
-      target: `${componentFolder}/${capitalizedComponentName}/styles.js`
+      target: `src/${componentFolder}/${capitalizedComponentName}/styles.js`
     })
   }
 }
